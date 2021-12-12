@@ -5,6 +5,7 @@ import Appointment from "./Appointment";
 import axios from "axios";
 import getAppointmentsForDay from "../helpers/getAppointmentsForDay";
 import getInterview from "../helpers/getInterview";
+import getInterviewersForDay from "../helpers/getInterviewersForDay";
 
 // const appointments = [
 //   {
@@ -57,6 +58,7 @@ export default function Application(props) {
   const setDay = (day) => setState({ ...state, day });
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
+    const interviewers = getInterviewersForDay(state, state.day);
 
     return (
       <Appointment
@@ -64,6 +66,7 @@ export default function Application(props) {
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        interviewers={interviewers}
       />
     );
   });
@@ -90,7 +93,7 @@ export default function Application(props) {
 
       const [first, second, third] = all;
 
-      console.log(first, second, third);
+      // console.log(first, second, third);
     });
     // axios.get("/api/days").then((response) => {
     //   // setDays([...response.data]);

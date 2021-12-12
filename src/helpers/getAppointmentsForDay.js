@@ -1,4 +1,4 @@
-const getAppointmentsForDay = (state, day) => {
+export default function getAppointmentsForDay(state, day) {
   let arrApp = [];
 
   for (const dayObj of state.days) {
@@ -13,6 +13,4 @@ const getAppointmentsForDay = (state, day) => {
   }
 
   return arrApp;
-};
-
-module.exports = getAppointmentsForDay;
+}
