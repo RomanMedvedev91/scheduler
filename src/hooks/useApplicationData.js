@@ -34,7 +34,8 @@ export default function useApplicationData() {
 
   const updateSpots = function (state, appointments, id) {
     //get day obj
-    const mutatedState = state;
+    const mutatedState = JSON.parse(JSON.stringify(state));
+
     const obj = mutatedState.days.find(
       (dayObj) => dayObj.name === mutatedState.day
     );
