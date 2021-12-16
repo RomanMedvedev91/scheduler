@@ -8,7 +8,7 @@ import getInterview from "../helpers/getInterview";
 import getInterviewersForDay from "../helpers/getInterviewersForDay";
 import useApplicationData from "hooks/useApplicationData";
 
-const dailyAppointments22 = [
+const dailyAppointmentsTEMP = [
   {
     id: 1,
     time: "12pm",
@@ -50,7 +50,7 @@ const dailyAppointments22 = [
   },
 ];
 
-const interviewers222 = [
+const interviewersTEMP = [
   {
     id: 1,
     name: "Sylvia Palmer",
@@ -100,7 +100,6 @@ export default function Application(props) {
     );
   });
 
-  console.log(schedule);
   return (
     <main className='layout'>
       <section className='sidebar'>
