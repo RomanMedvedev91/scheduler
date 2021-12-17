@@ -6,6 +6,12 @@ You can edit, delete it as well!
 
 ## Screenshots
 
+!["GIF of scheduler project"](https://github.com/RomanMedvedev91/scheduler/blob/master/docs/scheduler%20interview.gif?raw=true);
+!["screenshoot#1 of scheduler project"](https://github.com/RomanMedvedev91/scheduler/blob/master/docs/screenshoot%231.png?raw=true);
+!["screenshoot#2 of scheduler project"](https://github.com/RomanMedvedev91/scheduler/blob/master/docs/screenshoot%232.png?raw=true);
+!["screenshoot#3 of scheduler project"](https://github.com/RomanMedvedev91/scheduler/blob/master/docs/screenshoot%233.png?raw=true);
+!["screenshoot#4 of scheduler project"](https://github.com/RomanMedvedev91/scheduler/blob/master/docs/screenshoot%234.png?raw=true);
+
 ## Setup
 
 Install dependencies with `npm install`.
@@ -26,6 +32,12 @@ npm test
 
 ```sh
 npm run storybook
+```
+
+## Running Cypress test
+
+```sh
+npm run cypress
 ```
 
 ## Dependencies
