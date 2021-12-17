@@ -1,6 +1,5 @@
-import React, { Fragment } from "react";
+import React from "react";
 import "components/Appointment/styles.scss";
-import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
@@ -61,6 +60,7 @@ export default function Appointment(props) {
           interviewer={props.interview.interviewer}
           onDelete={confirmDelete}
           onEdit={() => transition(EDIT)}
+          time={props.time}
         />
       )}
       {mode === CREATE && (
