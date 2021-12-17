@@ -92,21 +92,6 @@ export default function Appointment(props) {
       {mode === ERROR_DELETE && (
         <Error onClose={() => transition(back)} message={"Error: can't save"} />
       )}
-
-      {/* {props.interview ? (
-        <>
-          <Header time={props.time} />
-          <Show
-            student={props.interview.student}
-            interviewer={props.interview.interviewer}
-          />
-        </>
-      ) : (
-        <>
-          <Header time={props.time} />
-          <Empty />
-        </>
-      )} */}
     </article>
   );
 }
