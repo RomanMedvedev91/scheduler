@@ -7,6 +7,7 @@ import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
 import useVisualMode from "../../hooks/useVisualMode";
+import { useEffect } from "@storybook/addons";
 
 export default function Appointment(props) {
   //transition variables
@@ -72,7 +73,7 @@ export default function Appointment(props) {
         <Confirm
           onConfirm={cancel}
           onCancel={back}
-          message={"Are you sure you would like to delte?"}
+          message={"Are you sure you would like to delete?"}
         />
       )}
       {mode === EDIT && (
@@ -81,6 +82,7 @@ export default function Appointment(props) {
           interviewers={props.interviewers}
           onSave={save}
           onCancel={() => transition(SHOW)}
+          // onCancel={back}
         />
       )}
       {mode === ERROR_SAVE && (
@@ -90,7 +92,11 @@ export default function Appointment(props) {
         />
       )}
       {mode === ERROR_DELETE && (
-        <Error onClose={() => transition(back)} message={"Error: can't save"} />
+        <Error
+          // onClose={back}
+          onClose={() => transition(back)}
+          message={"Error: can't save"}
+        />
       )}
     </article>
   );

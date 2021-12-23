@@ -1,5 +1,5 @@
 export default function getInterview(state, interview) {
-  if (interview === null) return null;
+  if (!interview) return null;
   let interviewObj = interview;
   const interviewerInfo = state.interviewers[interviewObj.interviewer];
   interviewObj.interviewer = { ...interviewerInfo };
