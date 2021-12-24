@@ -54,7 +54,11 @@ export default function Form(props) {
           <Button danger onClick={cancel}>
             Cancel
           </Button>
-          <Button confirm onClick={validate}>
+          <Button
+            confirm
+            onSubmit={(event) => event.preventDefault()}
+            onClick={validate}
+          >
             Save
           </Button>
         </section>

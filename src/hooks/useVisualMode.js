@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function useVisualMode(initial) {
   const [mode, setMode] = useState(initial);
@@ -6,30 +6,24 @@ export default function useVisualMode(initial) {
 
   const transition = function (secondMode, replace = false) {
     if (replace) {
-      return setMode(secondMode);
+      setMode(secondMode);
     }
     setHistory([...history, secondMode]);
-    console.log("history", history);
     return setMode(secondMode);
   };
 
   const back = function () {
-    let copiedHistory = [...history];
-    copiedHistory.pop(mode);
-    setHistory(copiedHistory);
-
     if (history.length > 1) {
+      let copiedHistory = [...history];
+      copiedHistory.pop();
       const preMode = copiedHistory[copiedHistory.length - 1];
+      setHistory(copiedHistory);
       setMode(preMode);
+
+      return;
     }
+    setMode(initial);
   };
-  // const back = function () {
-  //   if (history.length > 1) {
-  //     history.pop(); //can't mutate state directly
-  //   }
-  //   const preMode = history[history.length - 1];
-  //   return setMode(preMode);
-  // };
 
   return {
     mode,

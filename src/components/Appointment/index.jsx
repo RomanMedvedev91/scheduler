@@ -1,13 +1,14 @@
 import React from "react";
 import "components/Appointment/styles.scss";
+import Header from "components/Appointment/Header";
 import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
 import Error from "./Error";
-import useVisualMode from "../../hooks/useVisualMode";
-import { useEffect } from "@storybook/addons";
+import useVisualMode from "hooks/useVisualMode";
+// import { useEffect } from "@storybook/addons";
 
 export default function Appointment(props) {
   //transition variables
@@ -30,11 +31,14 @@ export default function Appointment(props) {
       student: name,
       interviewer,
     };
+
     transition(SAVING);
 
     props
       .bookInterview(props.id, interview)
-      .then(() => transition(SHOW))
+      .then(() => {
+        transition(SHOW);
+      })
       .catch((error) => transition(ERROR_SAVE, true));
   };
 
@@ -46,7 +50,9 @@ export default function Appointment(props) {
     transition(DELETE, true);
     props
       .cancelInterview(props.id)
-      .then(() => transition(EMPTY))
+      .then(() => {
+        transition(EMPTY);
+      })
       .catch((error) => {
         transition(ERROR_DELETE, true);
       });
@@ -54,6 +60,8 @@ export default function Appointment(props) {
 
   return (
     <article className='appointment'>
+      <Header time={props.time} />
+
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
         <Show
@@ -61,7 +69,6 @@ export default function Appointment(props) {
           interviewer={props.interview.interviewer}
           onDelete={confirmDelete}
           onEdit={() => transition(EDIT)}
-          time={props.time}
         />
       )}
       {mode === CREATE && (
@@ -79,24 +86,17 @@ export default function Appointment(props) {
       {mode === EDIT && (
         <Form
           student={props.interview.student}
+          interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
           onSave={save}
-          onCancel={() => transition(SHOW)}
-          // onCancel={back}
+          onCancel={back}
         />
       )}
       {mode === ERROR_SAVE && (
-        <Error
-          onClose={() => transition(EMPTY)}
-          message={"Error: can't save"}
-        />
+        <Error message={"Error: can't save"} onClose={back} />
       )}
       {mode === ERROR_DELETE && (
-        <Error
-          // onClose={back}
-          onClose={() => transition(back)}
-          message={"Error: can't save"}
-        />
+        <Error onClose={back} message={"Error: can't save"} />
       )}
     </article>
   );

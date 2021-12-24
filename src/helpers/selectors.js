@@ -11,25 +11,20 @@ export default function selectors() {
   };
 
   const getInterviewersForDay = function (state, day) {
-    let arrApp = [];
+    const validDayNames = state.days.map((dayObj) => dayObj.name);
+    if (!day || !validDayNames.includes(day)) return [];
 
-    for (const dayObj of state.days) {
-      if (dayObj.name === day) {
-        const today = dayObj.interviewers;
-        for (const interview of today) {
-          if (state.interviewers[interview]) {
-            arrApp.push(state.interviewers[interview]);
-          }
-        }
-      }
-    }
-    return arrApp;
+    const todayObj = state.days.filter((dayObj) => dayObj.name === day)[0];
+    const interviewersObj = todayObj.interviewers.map(
+      (interId) => state.interviewers[interId]
+    );
+    return interviewersObj;
   };
 
   const getInterview = function (state, interview) {
     if (!interview) return null;
-    let interviewObj = interview;
-    const interviewerInfo = state.interviewers[interviewObj.interviewer];
+    let interviewObj = { ...interview };
+    const interviewerInfo = state.interviewers[interview.interviewer];
     interviewObj.interviewer = { ...interviewerInfo };
     return interviewObj;
   };
