@@ -7,6 +7,7 @@ export default function useVisualMode(initial) {
   const transition = function (secondMode, replace = false) {
     if (replace) {
       setMode(secondMode);
+      return;
     }
     setHistory([...history, secondMode]);
     return setMode(secondMode);
@@ -19,7 +20,6 @@ export default function useVisualMode(initial) {
       const preMode = copiedHistory[copiedHistory.length - 1];
       setHistory(copiedHistory);
       setMode(preMode);
-
       return;
     }
     setMode(initial);
