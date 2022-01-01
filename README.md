@@ -62,3 +62,7 @@ npm run cypress
 - node-sass\
 - prop-types \
 - react-test-renderer \
+
+## API Server
+
+fork and clone [scheduler-api](https://github.com/lighthouse-labs/scheduler-api) into new derectory and follow the README.md instructions to configure and run the API server.
